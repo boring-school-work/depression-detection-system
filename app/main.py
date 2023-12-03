@@ -52,7 +52,9 @@ def display(status):
 
 
 st.title("Depression Prediction System")
-st.write("by: [David Saah](https://github.com/davesaah)")
+st.write(
+    "by: [David Saah](https://github.com/davesaah) & [John Edem](https://github.com/1gitboss)"
+)
 
 st.subheader("Accuracy metrics", divider="rainbow")
 col1, col2, col3, col4 = st.columns(spec=[0.5, 0.5, 0.5, 0.5])
