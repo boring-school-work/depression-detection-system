@@ -46,7 +46,7 @@ def predict(prompt):
 
 def display(status):
     if status == "yes":
-        st.error("You most likely depressed :(")
+        st.error("You are most likely depressed :(")
     else:
         st.success("Your mind is healthy :)")
 
