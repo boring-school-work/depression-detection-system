@@ -71,3 +71,13 @@ a minimum confidence level of 95%.
   Google Support Team.
 - **Workaround:** Used api endpoint of model to query for predicted results and used
   scikit accuracy metrics to evaluate the model.
+
+## Useful Links
+
+- Deployed site: [depression-detection-system.streamlit.app](https://depression-detection-system.streamlit.app/)
+- YouTube Link: [Depression Detection System](https://youtu.be/TU8LdRdm5AI)
+
+## Team
+
+- David Abeiku Saah
+- John Edem Anatsui
