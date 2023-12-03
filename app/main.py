@@ -8,8 +8,8 @@ service_account_info = st.secrets["SERVICE_ACCOUNT_INFO"]
 
 # Load the credentials from the JSON key file
 credentials = service_account.Credentials.from_service_account_info(
-    service_account_info,
-    scopes=['https://www.googleapis.com/auth/cloud-platform'])
+    service_account_info, scopes=["https://www.googleapis.com/auth/cloud-platform"]
+)
 
 
 vertexai.init(project="130460717287", location="us-central1", credentials=credentials)
@@ -18,10 +18,13 @@ parameters = {
     "max_output_tokens": 1024,
     "temperature": 0.2,
     "top_p": 0.8,
-    "top_k": 40
+    "top_k": 40,
 }
 model = TextGenerationModel.from_pretrained("text-bison@001")
-model = model.get_tuned_model("projects/130460717287/locations/us-central1/models/304078736754475008")
+model = model.get_tuned_model(
+    "projects/130460717287/locations/us-central1/models/304078736754475008"
+)
+
 
 def predict(prompt):
     response = model.predict(
@@ -36,9 +39,10 @@ def predict(prompt):
     input: {prompt}
     output:
     """,
-        **parameters
+        **parameters,
     )
     return response.text
+
 
 def display(status):
     if status == "yes":
@@ -51,7 +55,7 @@ st.title("Depression Prediction System")
 st.write("by: [David Saah](https://github.com/davesaah)")
 
 st.subheader("Accuracy metrics", divider="rainbow")
-col1, col2, col3, col4 = st.columns(spec=[.5, .5, .5, .5])
+col1, col2, col3, col4 = st.columns(spec=[0.5, 0.5, 0.5, 0.5])
 col1.metric("AuPRC score", "0.83")
 col2.metric("Recall", "0.96")
 col3.metric("Precision", "0.84")
@@ -60,12 +64,6 @@ st.subheader("", divider="rainbow")
 
 response = st.text_area(label="What's on your mind", placeholder="max 1024 characters.")
 
-col1, col2 = st.columns(spec=[.9, .1])
 
-with col1:
-    if st.button("Am I depressed?"):
-        display(predict(response))
-
-with col2:
-    if st.button("Clear"):
-        st.session_state = {}
+if st.button("Am I depressed?"):
+    display(predict(response))
